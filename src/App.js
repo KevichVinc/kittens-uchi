@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import * as appAC from './redux/actionCreators/kittens';
 import './App.css';
 
@@ -14,11 +14,22 @@ function App() {
   useEffect(() => dispatch(appAC.loadKittens()), [dispatch]);
   return (
     <div className='App'>
-      <div className='header'></div>
+      <div className='header'>
+        <NavLink className='link' to={`/`}>
+          <div className='linkWrapper'>
+            <span>Все котики</span>
+          </div>
+        </NavLink>
+        <NavLink className='link' to={`/favorites`}>
+          <div className='linkWrapper'>
+            <span>Любимые котики</span>
+          </div>
+        </NavLink>
+      </div>
       <Route exact path='/' render={() => <Main kittens={kittens} />} />
       <Route
         exact
-        path='/favorite'
+        path='/favorites'
         render={() => <Favorite favorite={favorite} />}
       />
     </div>

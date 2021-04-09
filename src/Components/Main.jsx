@@ -8,8 +8,7 @@ export default function Main(props) {
   const { kittens } = props;
   const dispatch = useDispatch();
 
-  const handleFavorites = (e, kitten) => {
-    e.stopPropagation();
+  const handleFavorites = (kitten) => {
     dispatch(appAC.changeStatus(kitten.id));
   };
 
@@ -31,7 +30,7 @@ export default function Main(props) {
               type='checkbox'
               checked={kitten.status}
               id={kitten.id}
-              onChange={(e) => handleFavorites(e, kitten)}
+              onChange={() => handleFavorites(kitten)}
             ></input>
           </div>
         </div>

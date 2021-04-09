@@ -19,7 +19,11 @@ export default function Favorite(props) {
             id={kitten.id}
           ></img>
           <div className={style.checkBoxWrapper}>
-            <input cheked='checked' type='checkbox' id={kitten.id}></input>
+            <input
+              cheked={kitten.status}
+              type='checkbox'
+              id={kitten.id}
+            ></input>
           </div>
         </div>
       ))}
