@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import * as appAC from '../redux/actionCreators/profiles';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import * as appAC from '../redux/actionCreators/kittens';
 
 import style from './Main.module.css';
 
-export default function Main() {
+export default function Main(props) {
+  const { kittens } = props;
   const dispatch = useDispatch();
-  const kittens = useSelector((state) => state.kittens);
-  useEffect(() => dispatch(appAC.loadKittens()), [dispatch]);
+
+  const handleFavorites = (e, kitten) => {
+    e.stopPropagation();
+    dispatch(appAC.changeStatus(kitten.id));
+  };
 
   return (
     <div className={style.mainPageWrapper}>
-      <div className={style.header}></div>
       {kittens.map((kitten) => (
         <div
           className={style.kittenImageWrapper}
@@ -25,7 +27,12 @@ export default function Main() {
             id={kitten.id}
           ></img>
           <div className={style.checkBoxWrapper}>
-            <input type='checkbox' id={kitten.id}></input>
+            <input
+              type='checkbox'
+              checked={kitten.status}
+              id={kitten.id}
+              onChange={(e) => handleFavorites(e, kitten)}
+            ></input>
           </div>
         </div>
       ))}

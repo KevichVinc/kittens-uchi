@@ -2,9 +2,7 @@ import * as types from '../actionTypes';
 
 const initialState = {
   kittens: [],
-  profile: {
-    firstName: '',
-  },
+  favorite: [],
 };
 
 export default function appReducer(state = initialState, action) {
@@ -14,10 +12,15 @@ export default function appReducer(state = initialState, action) {
         ...state,
         kittens: action.kittens,
       };
-    case types.SET_PROFILE:
+    case types.SET_FAVORITES:
       return {
         ...state,
-        profile: action.profile,
+        favorite: action.favorites,
+      };
+    case types.SET_FAVORITE:
+      return {
+        ...state,
+        favorite: [...state.favorite, action.favorite],
       };
     default:
       return state;

@@ -1,23 +1,7 @@
-@charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 .mainPageWrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.header {
-  height: 6vh;
-  width: 100%;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
-  background: #2196f3;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
 }
 
 .kittenImageWrapper {
@@ -27,6 +11,7 @@
   width: 256px;
   height: 256px;
   margin: 2%;
+  transition: all 0.2s ease-out;
 }
 
 .kittenImageWrapper:hover {
@@ -59,7 +44,7 @@ input[type='checkbox'] {
   background-color: transparent;
   outline: none;
   transform: rotate(45deg);
-  border: 2px solid rgb(255, 58, 0);
+  border: 2px solid rgb(242, 78, 30);
   border-top-style: none;
   border-left-style: none;
   -webkit-appearance: none;
@@ -73,7 +58,7 @@ input[type='checkbox']:before {
   position: absolute;
   content: '';
   border-radius: 75px 75px 0 0;
-  border: 2px solid rgb(255, 58, 0);
+  border: 2px solid rgb(242, 78, 30);
   border-bottom-style: none;
 }
 input[type='checkbox']:after {
@@ -86,7 +71,7 @@ input[type='checkbox']:after {
   position: absolute;
   content: '';
   border-radius: 75px 75px 0 0;
-  border: 2px solid rgb(255, 58, 0);
+  border: 2px solid rgb(242, 78, 30);
   border-bottom-style: none;
 }
 
