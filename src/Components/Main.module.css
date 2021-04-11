@@ -1,7 +1,22 @@
+button {
+  border: none;
+  background: none;
+  width: 20vh;
+  height: 4vh;
+
+  margin-bottom: 2%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+}
+
 .mainPageWrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .kittenImageWrapper {
@@ -51,9 +66,9 @@ input[type='checkbox'] {
 }
 input[type='checkbox']:before {
   height: 54%;
-  width: 97.4%;
+  width: 97.6%;
   top: -59%;
-  left: -4.6%;
+  left: -4%;
   background-color: transparent;
   position: absolute;
   content: '';
@@ -63,7 +78,7 @@ input[type='checkbox']:before {
 }
 input[type='checkbox']:after {
   height: 49.5%;
-  width: 97.5%;
+  width: 100%;
   top: 23%;
   right: 70%;
   transform: rotate(270deg);
@@ -79,4 +94,25 @@ input[type='checkbox']:checked,
 input:checked[type='checkbox']:before,
 input:checked[type='checkbox']:after {
   background-color: rgb(255, 58, 0);
+  border-color: rgb(255, 58, 0);
+}
+
+input[type='checkbox']:checked:hover {
+  background-color: rgb(255, 58, 0);
+  border-color: rgb(255, 58, 0);
+}
+
+input:checked:hover[type='checkbox']:before {
+  background-color: rgb(255, 58, 0);
+  border-color: rgb(255, 58, 0);
+}
+input:checked:hover[type='checkbox']:after {
+  background-color: rgb(255, 58, 0);
+  border-color: rgb(255, 58, 0);
+}
+
+input[type='checkbox']:hover,
+input:hover[type='checkbox']:before,
+input:hover[type='checkbox']:after {
+  background-color: rgb(242, 78, 30);
 }

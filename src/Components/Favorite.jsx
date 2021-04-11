@@ -1,9 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import * as appAC from '../redux/actionCreators/kittens';
 
 import style from './Main.module.css';
 
 export default function Favorite(props) {
   const { favorite } = props;
+  const dispatch = useDispatch();
+
+  const handleChange = (kittenId) => dispatch(appAC.changeStatus(kittenId));
 
   return (
     <div className={style.mainPageWrapper}>
@@ -20,9 +25,10 @@ export default function Favorite(props) {
           ></img>
           <div className={style.checkBoxWrapper}>
             <input
-              cheked={kitten.status}
               type='checkbox'
               id={kitten.id}
+              checked={kitten.status}
+              onChange={() => handleChange(kitten.id)}
             ></input>
           </div>
         </div>

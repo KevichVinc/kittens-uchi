@@ -12,6 +12,11 @@ export default function appReducer(state = initialState, action) {
         ...state,
         kittens: action.kittens,
       };
+    case types.SET_MORE_KITTENS:
+      return {
+        ...state,
+        kittens: [...state.kittens.concat(action.kittens)],
+      };
     case types.SET_FAVORITES:
       return {
         ...state,

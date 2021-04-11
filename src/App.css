@@ -23,16 +23,19 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  width: 12vh;
   height: 6vh;
-  margin-left: 8.4%;
+  width: 14vh;
 }
 .linkWrapper:hover {
   background-color: #1e88e5;
 }
+.linkWrapper:focus {
+  background-color: #1e88e5;
+  outline: transparent;
+}
 
 .linkWrapper:last-child {
-  margin-left: 1%;
+  margin-left: 0%;
 }
 
 .link {
@@ -42,9 +45,9 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 21px;
-  margin-left: 8%;
+  margin-left: 4%;
   /* or 150% */
 
   text-align: center;
