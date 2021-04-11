@@ -8,6 +8,7 @@ export default function Favorite(props) {
   const { favorite } = props;
   const dispatch = useDispatch();
 
+  //Данная функция отвечает за лайк котенка и добавление/удаление его из списка любимых котиков.
   const handleChange = (kittenId) => dispatch(appAC.changeStatus(kittenId));
 
   return (

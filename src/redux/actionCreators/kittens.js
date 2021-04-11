@@ -2,24 +2,31 @@ import axios from 'axios';
 import * as types from '../actionTypes';
 import store from '../store';
 
+// Этот экшн добавляет в store котят из API
 export const setKittens = (kittens) => ({
   type: types.SET_KITTENS,
   kittens,
 });
+
+// Этот экшн добавляет в store котят из API по нажатию кнопки
 export const setMoreKittens = (kittens) => ({
   type: types.SET_MORE_KITTENS,
   kittens,
 });
+
+// Этот экшн обновляет список любимых котеек
 export const setFavorites = (favorites) => ({
   type: types.SET_FAVORITES,
   favorites,
 });
 
+// Этот экшн добавляет котенка в список любимых
 export const addToFavorites = (favorite) => ({
   type: types.SET_FAVORITE,
   favorite,
 });
 
+// Этот экшн удаляет котенка из списка любимых
 export const deleteFromFavorites = (kittenId) => (dispatch) => {
   const favoritesToChange = store
     .getState()
@@ -27,6 +34,7 @@ export const deleteFromFavorites = (kittenId) => (dispatch) => {
   dispatch(setFavorites(favoritesToChange));
 };
 
+// Этот экшн обновляет статус котят (в любимцах они или нет)
 export const changeStatus = (kittenId) => (dispatch) => {
   const kittensToChange = store.getState().kittens.map((kitten) => {
     if (kitten.id === kittenId) {
@@ -44,6 +52,7 @@ export const changeStatus = (kittenId) => (dispatch) => {
   dispatch(setKittens(kittensToChange));
 };
 
+// Этот экшн загружает котят из базы на componentDidMount(), в первый раз
 export const loadKittens = (setLoadStatus) => async (dispatch) => {
   try {
     const url = `https://api.thecatapi.com/v1/images/search?limit=15&page=1&order=Desc`;
@@ -62,6 +71,7 @@ export const loadKittens = (setLoadStatus) => async (dispatch) => {
   }
 };
 
+// Этот экшн загружает дополнительных котят по нажатию кнопки из API
 export const loadMoreKittens = (setMoreLoaded) => async (dispatch) => {
   try {
     const url = `https://api.thecatapi.com/v1/images/search?limit=15&page=${
@@ -76,7 +86,6 @@ export const loadMoreKittens = (setMoreLoaded) => async (dispatch) => {
       return { ...kitten, status: false };
     });
     dispatch(setMoreKittens(kittensWithStatuses));
-    setMoreLoaded(false);
   } catch {
     throw new Error('Ошибка при загрузке котеек');
   }

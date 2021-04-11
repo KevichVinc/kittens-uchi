@@ -8,14 +8,16 @@
   justify-content: flex-start;
   height: 6vh;
   width: 100%;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 
   background: #2196f3;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+
+.menuIcon {
+  display: none;
+  width: 35px;
+  height: 35px;
 }
 
 .linkWrapper {
@@ -69,4 +71,18 @@
 
 .link:visited > .linkWrapper {
   background-color: #1e88e5;
+}
+
+@media screen and (max-width: 500px) {
+  .link {
+    margin: 5%;
+  }
+
+  .menuIcon {
+    display: flex;
+  }
+
+  .linkWrapper {
+    display: none;
+  }
 }

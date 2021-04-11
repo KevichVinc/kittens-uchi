@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as appAC from '../redux/actionCreators/kittens';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import style from './Main.module.css';
 import Loader from './Loader';
@@ -8,15 +9,15 @@ import Loader from './Loader';
 export default function Main(props) {
   const { kittens, isLoading } = props;
   const dispatch = useDispatch();
-  const [isMoreLoading, setMoreLoaded] = useState(false);
 
+  //Данная функция отвечает за лайк котенка и добавление/удаление его из списка любимых котиков.
   const handleFavorites = (kitten) => {
     dispatch(appAC.changeStatus(kitten.id));
   };
 
+  //Эта функция работает когда нажали на кнопку "загрузить ещё котят"
   const handleMoreKittens = () => {
-    setMoreLoaded(true);
-    dispatch(appAC.loadMoreKittens(setMoreLoaded));
+    dispatch(appAC.loadMoreKittens());
   };
 
   return (
@@ -25,36 +26,39 @@ export default function Main(props) {
         {isLoading ? (
           <Loader />
         ) : (
-          kittens.map((kitten) => (
-            <div
-              className={style.kittenImageWrapper}
-              key={Math.random() * Math.random()}
-            >
-              <img
-                src={kitten.url}
-                className={style.kittenImage}
-                alt='Kitty'
-                id={kitten.id}
-              ></img>
-              <div className={style.checkBoxWrapper}>
-                <input
-                  type='checkbox'
-                  checked={kitten.status}
+          <InfiniteScroll
+            className={style.mainPageWrapper}
+            dataLength={kittens.length}
+            next={handleMoreKittens}
+            hasMore={true}
+            scrollThreshold={1}
+            initialScrollY={0}
+          >
+            {kittens.map((kitten) => (
+              <div
+                className={style.kittenImageWrapper}
+                key={Math.random() * Math.random()}
+              >
+                <img
+                  src={kitten.url}
+                  className={style.kittenImage}
+                  alt='Kitty'
                   id={kitten.id}
-                  onChange={() => handleFavorites(kitten)}
-                ></input>
+                ></img>
+                <div className={style.checkBoxWrapper}>
+                  <input
+                    type='checkbox'
+                    checked={kitten.status}
+                    id={kitten.id}
+                    onChange={() => handleFavorites(kitten)}
+                  ></input>
+                </div>
               </div>
-            </div>
-          ))
+            ))}
+          </InfiniteScroll>
         )}
       </div>
-      {isMoreLoading ? (
-        <Loader />
-      ) : (
-        <button type='button' onClick={handleMoreKittens}>
-          ...загружаем ещё котиков...
-        </button>
-      )}
+      <button type='button'>...загружаем ещё котиков...</button>
     </div>
   );
 }
