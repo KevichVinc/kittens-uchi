@@ -1,7 +1,10 @@
 
 ## Как запустить?
 
-Стандартная команда запуска react app: `npm start`
+
+1. Git clone https://github.com/KevichVinc/kittens-uchi.git
+2. Устанавливаем все необходимые модули: `npm шinstall`
+3. Запускаем react app: `npm start`
 
 ### Что реализовано?
 
